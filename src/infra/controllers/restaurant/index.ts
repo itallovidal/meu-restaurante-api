@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common'
 import { GetRestaurantByIDController } from './get-restaurant-by-ID-controller'
-import { IContractorRepository } from '../../../app/repositories/IContractorRepository'
-import { FirebaseContractorRepository } from '../../../app/repositories/implementations/firebaseContractorRepository'
+import { IRestaurantRepository } from '../../../app/repositories/IRestaurant-repository'
+import { FirebaseRestaurantRepository } from '../../../app/repositories/implementations/firebase-restaurant-repository'
 import { GetRestaurantByIDUseCase } from '../../../app/useCases/restaurant/get-restaurant-by-ID-use-case'
 import { LoginController } from './login.controller'
 import { LoginRestaurantUseCase } from '../../../app/useCases/restaurant/login-restaurant-use-case'
@@ -19,8 +19,8 @@ import { CreateRestaurantUseCase } from '../../../app/useCases/restaurant/create
   ],
   providers: [
     {
-      provide: IContractorRepository,
-      useClass: FirebaseContractorRepository,
+      provide: IRestaurantRepository,
+      useClass: FirebaseRestaurantRepository,
     },
     GetRestaurantByIDUseCase,
     LoginRestaurantUseCase,
@@ -28,4 +28,4 @@ import { CreateRestaurantUseCase } from '../../../app/useCases/restaurant/create
     CreateRestaurantUseCase,
   ],
 })
-export class ContractorModule {}
+export class RestaurantModule {}

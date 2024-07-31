@@ -1,4 +1,4 @@
-import { IContractorRepository } from '../IContractorRepository'
+import { IRestaurantRepository } from '../IRestaurant-repository'
 import { BadRequestException, Injectable } from '@nestjs/common'
 import {
   getDownloadURL,
@@ -18,11 +18,11 @@ import {
   updateDoc,
   where,
 } from 'firebase/firestore'
-import { IRestaurantSchemaDTO } from '../../../infra/validations/restaurant/restaurant-schema'
-import { IPolitic } from '../../../domain/IContractor'
+import { IRestaurantSchema } from '../../../infra/validations/restaurant/restaurant-schema'
+import { IRestaurant } from '../../../domain/IRestaurant'
 
 @Injectable()
-export class FirebaseContractorRepository implements IContractorRepository {
+export class FirebaseRestaurantRepository implements IRestaurantRepository {
   private db
   private storage
 
@@ -31,35 +31,23 @@ export class FirebaseContractorRepository implements IContractorRepository {
   }
 
   dbConnection() {
-    // objeto de configuracão do firebase build
     const firebaseConfig = {
-      apiKey: 'AIzaSyBYQBbDEedm43eFOw6aVYcrGljya1Prs84',
-      authDomain: 'projetoalpha-b5ee8.firebaseapp.com',
-      projectId: 'projetoalpha-b5ee8',
-      storageBucket: 'projetoalpha-b5ee8.appspot.com',
-      messagingSenderId: '661461579263',
-      appId: '1:661461579263:web:d938aba6b4e69a98ede3ca',
+      apiKey: 'AIzaSyAWW13o_KkOCQbRedhzJAumbAq0i88NlcQ',
+      authDomain: 'meu-restaurante-9e770.firebaseapp.com',
+      projectId: 'meu-restaurante-9e770',
+      storageBucket: 'meu-restaurante-9e770.appspot.com',
+      messagingSenderId: '612759714087',
+      appId: '1:612759714087:web:189a0067dcfd90eeb6d102',
     }
 
-    // objeto de configuracão do firebase de testes
-    // const firebaseConfig = {
-    //   apiKey: 'AIzaSyDwvyJTaEI7Wu11d77IU0DXfXig7Y1OHos',
-    //   authDomain: 'projetoalpha-c8d5e.firebaseapp.com',
-    //   projectId: 'projetoalpha-c8d5e',
-    //   storageBucket: 'projetoalpha-c8d5e.appspot.com',
-    //   messagingSenderId: '1021811883912',
-    //   appId: '1:1021811883912:web:541bf8b257a284db89043d',
-    // }
-
-    // objeto de inicializacão do firebase
     const app = initializeApp(firebaseConfig)
     this.db = getFirestore()
     this.storage = getStorage(app)
   }
 
-  async update(data: IRestaurantSchemaDTO, id: string) {
+  async update(data: IRestaurantSchema, id: string) {
     if (data.id) {
-      const docRef = doc(this.db, 'politicos', id)
+      const docRef = doc(this.db, 'restaurants', id)
       await updateDoc(docRef, data)
       return await this.getByID(data.id)
     }
@@ -69,10 +57,9 @@ export class FirebaseContractorRepository implements IContractorRepository {
     })
   }
 
-  delete() {}
-
-  async create(data: IPolitic) {
-    const usersCollection = collection(this.db, 'politicos')
+  async create(data: IRestaurant) {
+    console.log(data)
+    const usersCollection = collection(this.db, 'restaurants')
     await addDoc(usersCollection, {
       ...data,
       created_at: serverTimestamp(),
@@ -82,7 +69,7 @@ export class FirebaseContractorRepository implements IContractorRepository {
   }
 
   async getByID(id: string) {
-    const colRef = collection(this.db, 'politicos')
+    const colRef = collection(this.db, 'restaurants')
     const q = query(colRef, where('id', '==', id))
     const snapshot = await getDocs(q)
 
@@ -93,7 +80,7 @@ export class FirebaseContractorRepository implements IContractorRepository {
   }
 
   async login(email: string, password: string) {
-    const colRef = collection(this.db, 'politicos')
+    const colRef = collection(this.db, 'restaurants')
     const q = query(
       colRef,
       where('email', '==', email.toLowerCase()),
@@ -108,7 +95,7 @@ export class FirebaseContractorRepository implements IContractorRepository {
 
   async storeFile(image: Express.Multer.File, id: string) {
     const fileType = image.mimetype.slice(6)
-    const URL = `test/${id}/${crypto.randomUUID()}.${fileType}`
+    const URL = `profile/${id}/${crypto.randomUUID()}.${fileType}`
     const storageRef = ref(this.storage, URL)
 
     const uploadTask = uploadBytesResumable(storageRef, image.buffer)

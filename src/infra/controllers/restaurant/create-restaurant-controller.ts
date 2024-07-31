@@ -8,8 +8,8 @@ import {
   UseInterceptors,
 } from '@nestjs/common'
 import {
-  createContractorSchemaDTO,
-  ICreateRestaurantSchemaDTO,
+  createRestaurantSchema,
+  ICreateRestaurantSchema,
 } from '../../validations/restaurant/restaurant-schema'
 import { FileInterceptor } from '@nestjs/platform-express'
 import { CreateRestaurantUseCase } from '../../../app/useCases/restaurant/create-restaurant-use-case'
@@ -32,20 +32,22 @@ export class CreateRestaurantController {
     }),
   )
   async handle(
-    @Body(new ZodValidationPipe(createContractorSchemaDTO))
-    body: ICreateRestaurantSchemaDTO,
+    @Body(new ZodValidationPipe(createRestaurantSchema))
+    body: ICreateRestaurantSchema,
     @UploadedFile() profile_image: Express.Multer.File,
   ) {
     try {
-      const newUser = await this.createContractorUseCase.execute(
+      console.log('criando restaurante.')
+
+      const restaurantCreated = await this.createContractorUseCase.execute(
         body,
         profile_image,
       )
 
       return {
-        message: 'Usuário Criado Com Sucesso.',
+        message: 'Restaurante Criado Com Sucesso.',
         statusCode: 201,
-        userCreated: newUser,
+        restaurant: restaurantCreated,
       }
     } catch (e) {
       console.log(e)

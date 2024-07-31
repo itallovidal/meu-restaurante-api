@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common'
-import { IContractorRepository } from '../../repositories/IContractorRepository'
+import { IRestaurantRepository } from '../../repositories/IRestaurant-repository'
 import { loginDTO } from '../../../infra/validations/restaurant/login-validation'
 
 @Injectable()
 export class LoginRestaurantUseCase {
-  constructor(private contractorRepository: IContractorRepository) {}
+  constructor(private contractorRepository: IRestaurantRepository) {}
 
   async execute(data: loginDTO) {
     return await this.contractorRepository.login(data.email, data.password)

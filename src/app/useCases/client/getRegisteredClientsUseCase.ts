@@ -1,4 +1,4 @@
-import { IClientRepository } from '../../repositories/IClientRepository'
+import { IClientRepository } from '../../repositories/IClient-repository'
 import { Injectable } from '@nestjs/common'
 
 @Injectable()

@@ -1,5 +1,5 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common'
-import { IClientRepository } from '../../repositories/IClientRepository'
+import { IClientRepository } from '../../repositories/IClient-repository'
 import { ICSVParser } from '../../../libraries/jsonCSVParser/ICSVParser'
 
 @Injectable()

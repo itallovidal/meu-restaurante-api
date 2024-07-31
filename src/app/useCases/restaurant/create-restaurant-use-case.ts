@@ -1,43 +1,40 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common'
-import { IContractorRepository } from '../../repositories/IContractorRepository'
-import { ICreateRestaurantSchemaDTO } from '../../../infra/validations/restaurant/restaurant-schema'
+import { IRestaurantRepository } from '../../repositories/IRestaurant-repository'
+import { ICreateRestaurantSchema } from '../../../infra/validations/restaurant/restaurant-schema'
 import { createQrCode } from '../../../libraries/createQRCode'
 
 @Injectable()
 export class CreateRestaurantUseCase {
-  constructor(private contractorRepository: IContractorRepository) {}
+  constructor(private restaurantRepository: IRestaurantRepository) {}
 
   async execute(
-    data: ICreateRestaurantSchemaDTO,
+    data: ICreateRestaurantSchema,
     profile_image: Express.Multer.File,
   ) {
     try {
       const id = crypto.randomUUID()
-
       const { qrCodeURL, URL } = await createQrCode(id)
-
-      const profileImagePath = await this.contractorRepository.storeFile(
+      const profileImagePath = await this.restaurantRepository.storeFile(
         profile_image,
         id,
       )
 
-      const { partido_nome, partido_sigla, ...filteredData } = data
+      console.log('')
 
-      const contractor = {
-        ...filteredData,
+      const restaurant = {
+        ...data,
         id,
         profile_image: profileImagePath,
         URLCadastro: URL,
         qrCode_image: qrCodeURL,
-        partido: {
-          partido_nome: partido_sigla,
-          partido_sigla: partido_nome,
-        },
       }
 
-      return await this.contractorRepository.create(contractor)
+      console.log('registrando no firebase..')
+
+      return await this.restaurantRepository.create(restaurant)
     } catch (e) {
-      throw new InternalServerErrorException('Erro ao criar o contratante.')
+      console.log(e)
+      throw new InternalServerErrorException('Erro ao cadastrar restaurante.')
     }
   }
 }

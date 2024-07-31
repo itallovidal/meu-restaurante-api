@@ -1,4 +1,4 @@
-import { IClientRepository } from '../../repositories/IClientRepository'
+import { IClientRepository } from '../../repositories/IClient-repository'
 import { Injectable, InternalServerErrorException } from '@nestjs/common'
 import { IRegisterClientDTO } from '../../../infra/validations/client/registerClientDTO'
 

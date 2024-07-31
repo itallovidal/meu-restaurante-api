@@ -1,4 +1,4 @@
-export interface IContractor {
+export interface IRestaurant {
   email: string
   id: string
   mensagem_sucesso: string
@@ -10,16 +10,5 @@ export interface IContractor {
   siteInstitucional: string | null
   instagram: string | null
   facebook: string | null
-  linkedin: string | null
-  youtube: string | null
   URLCadastro: string
-}
-
-interface IPartido {
-  partido_nome: string | null
-  partido_sigla: string | null
-}
-
-export interface IPolitic extends IContractor {
-  partido: IPartido
 }

@@ -1,16 +1,9 @@
 import { UpdateRestaurantUseCase } from '../../../app/useCases/restaurant/update-restaurant-use-case'
-import {
-  Body,
-  Controller,
-  HttpCode,
-  InternalServerErrorException,
-  Param,
-  Put,
-} from '@nestjs/common'
+import { Body, Controller, HttpCode, Param, Put } from '@nestjs/common'
 import { ZodValidationPipe } from '../../validations/zodValidationPipe'
 import {
-  contractorSchemaDTO,
-  IRestaurantSchemaDTO,
+  restaurantSchema,
+  IRestaurantSchema,
 } from '../../validations/restaurant/restaurant-schema'
 import { strSchema } from '../../validations/restaurant/generic-validator'
 
@@ -22,8 +15,8 @@ export class UpdateRestaurantController {
   @HttpCode(200)
   async handle(
     @Param('id', new ZodValidationPipe(strSchema)) id: string,
-    @Body(new ZodValidationPipe(contractorSchemaDTO))
-    body: IRestaurantSchemaDTO,
+    @Body(new ZodValidationPipe(restaurantSchema))
+    body: IRestaurantSchema,
   ) {
     try {
       console.log(body)

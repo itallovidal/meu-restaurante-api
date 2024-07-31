@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common'
-import { IContractorRepository } from '../../repositories/IContractorRepository'
+import { IRestaurantRepository } from '../../repositories/IRestaurant-repository'
 
 @Injectable()
 export class GetRestaurantByIDUseCase {
-  constructor(private contractorRepository: IContractorRepository) {}
+  constructor(private contractorRepository: IRestaurantRepository) {}
 
   async execute(id: string) {
     return await this.contractorRepository.getByID(id)

@@ -1,4 +1,4 @@
-import { IClientRepository } from '../IClientRepository'
+import { IClientRepository } from '../IClient-repository'
 import { initializeApp } from 'firebase/app'
 import {
   getFirestore,
@@ -35,7 +35,6 @@ export class FirebaseClientRepository implements IClientRepository {
   }
 
   dbConnection() {
-    // objeto de configuracão do firebase build
     const firebaseConfig = {
       apiKey: 'AIzaSyAWW13o_KkOCQbRedhzJAumbAq0i88NlcQ',
       authDomain: 'meu-restaurante-9e770.firebaseapp.com',
@@ -45,17 +44,6 @@ export class FirebaseClientRepository implements IClientRepository {
       appId: '1:612759714087:web:189a0067dcfd90eeb6d102',
     }
 
-    // objeto de configuracão do firebase de testes
-    // const firebaseConfig = {
-    //   apiKey: 'AIzaSyDwvyJTaEI7Wu11d77IU0DXfXig7Y1OHos',
-    //   authDomain: 'projetoalpha-c8d5e.firebaseapp.com',
-    //   projectId: 'projetoalpha-c8d5e',
-    //   storageBucket: 'projetoalpha-c8d5e.appspot.com',
-    //   messagingSenderId: '1021811883912',
-    //   appId: '1:1021811883912:web:541bf8b257a284db89043d',
-    // }
-
-    // objeto de inicializacão do firebase
     const app = initializeApp(firebaseConfig)
     this.db = getFirestore()
     this.storage = getStorage(app)
