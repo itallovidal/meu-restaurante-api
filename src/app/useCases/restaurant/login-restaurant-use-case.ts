@@ -4,9 +4,14 @@ import { loginDTO } from '../../../infra/validations/restaurant/login-validation
 
 @Injectable()
 export class LoginRestaurantUseCase {
-  constructor(private contractorRepository: IRestaurantRepository) {}
+  constructor(private restaurantRepository: IRestaurantRepository) {}
 
   async execute(data: loginDTO) {
-    return await this.contractorRepository.login(data.email, data.password)
+    const restaurant = await this.restaurantRepository.login(
+      data.email,
+      data.password,
+    )
+
+    return restaurant
   }
 }

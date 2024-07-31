@@ -58,7 +58,7 @@ export class FirebaseClientRepository implements IClientRepository {
 
     const collectionRef = collection(
       this.db,
-      `politicos/${collectionID}/cadastrados`,
+      `restaurants/${collectionID}/cadastrados`,
     )
 
     let q = query(
@@ -84,7 +84,7 @@ export class FirebaseClientRepository implements IClientRepository {
   }
 
   async checkIfContractorExists(collectionID: string) {
-    const docRef = doc(this.db, 'politicos', collectionID)
+    const docRef = doc(this.db, 'restaurants', collectionID)
     const snapshot = await getDoc(docRef)
 
     if (!snapshot.data()) {
@@ -102,13 +102,19 @@ export class FirebaseClientRepository implements IClientRepository {
   }
 
   async getRegisteredCount(collectionID: string) {
-    const colRef = collection(this.db, `politicos/${collectionID}/cadastrados`)
+    const colRef = collection(
+      this.db,
+      `restaurants/${collectionID}/cadastrados`,
+    )
     const snapshot = await getCountFromServer(colRef)
     return snapshot.data().count
   }
 
   async registerClient(collectionID: string, client: IRegisterClientDTO) {
-    const colRef = collection(this.db, `politicos/${collectionID}/cadastrados`)
+    const colRef = collection(
+      this.db,
+      `restaurants/${collectionID}/cadastrados`,
+    )
     await addDoc(colRef, {
       ...client,
       id: crypto.randomUUID(),

@@ -9,7 +9,6 @@ export const restaurantSchema = z.object({
   mensagem_sucesso: z.string().default('Cadastrado com sucesso!'),
   siteInstitucional: z.string().or(z.null()).default(null),
   facebook: z.string().or(z.null()).default(null),
-  youtube: z.string().or(z.null()).default(null),
   instagram: z.string().or(z.null()).default(null),
   whatsappCommunity: z.string().or(z.null()).default(null),
 })

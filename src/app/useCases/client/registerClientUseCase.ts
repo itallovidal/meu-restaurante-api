@@ -9,7 +9,6 @@ export class RegisterClientUseCase {
   async execute(collectionID: string, payload: IRegisterClientDTO) {
     try {
       await this.clientRepository.checkIfContractorExists(collectionID)
-
       await this.clientRepository.registerClient(collectionID, payload)
 
       return {
