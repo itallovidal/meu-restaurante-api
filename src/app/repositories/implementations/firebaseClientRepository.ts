@@ -37,12 +37,12 @@ export class FirebaseClientRepository implements IClientRepository {
   dbConnection() {
     // objeto de configuracão do firebase build
     const firebaseConfig = {
-      apiKey: 'AIzaSyBYQBbDEedm43eFOw6aVYcrGljya1Prs84',
-      authDomain: 'projetoalpha-b5ee8.firebaseapp.com',
-      projectId: 'projetoalpha-b5ee8',
-      storageBucket: 'projetoalpha-b5ee8.appspot.com',
-      messagingSenderId: '661461579263',
-      appId: '1:661461579263:web:d938aba6b4e69a98ede3ca',
+      apiKey: 'AIzaSyAWW13o_KkOCQbRedhzJAumbAq0i88NlcQ',
+      authDomain: 'meu-restaurante-9e770.firebaseapp.com',
+      projectId: 'meu-restaurante-9e770',
+      storageBucket: 'meu-restaurante-9e770.appspot.com',
+      messagingSenderId: '612759714087',
+      appId: '1:612759714087:web:189a0067dcfd90eeb6d102',
     }
 
     // objeto de configuracão do firebase de testes

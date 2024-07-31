@@ -18,7 +18,7 @@ import {
   updateDoc,
   where,
 } from 'firebase/firestore'
-import { IContractorSchemaDTO } from '../../../infra/validations/contractor/ContractorSchema'
+import { IRestaurantSchemaDTO } from '../../../infra/validations/restaurant/restaurant-schema'
 import { IPolitic } from '../../../domain/IContractor'
 
 @Injectable()
@@ -57,7 +57,7 @@ export class FirebaseContractorRepository implements IContractorRepository {
     this.storage = getStorage(app)
   }
 
-  async update(data: IContractorSchemaDTO, id: string) {
+  async update(data: IRestaurantSchemaDTO, id: string) {
     if (data.id) {
       const docRef = doc(this.db, 'politicos', id)
       await updateDoc(docRef, data)

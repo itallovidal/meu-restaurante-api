@@ -1,14 +1,14 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common'
 import { IContractorRepository } from '../../repositories/IContractorRepository'
-import { ICreateContractorSchemaDTO } from '../../../infra/validations/contractor/ContractorSchema'
+import { ICreateRestaurantSchemaDTO } from '../../../infra/validations/restaurant/restaurant-schema'
 import { createQrCode } from '../../../libraries/createQRCode'
 
 @Injectable()
-export class CreateContractorUseCase {
+export class CreateRestaurantUseCase {
   constructor(private contractorRepository: IContractorRepository) {}
 
   async execute(
-    data: ICreateContractorSchemaDTO,
+    data: ICreateRestaurantSchemaDTO,
     profile_image: Express.Multer.File,
   ) {
     try {

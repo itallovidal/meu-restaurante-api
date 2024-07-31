@@ -1,12 +1,12 @@
 import { IContractorRepository } from '../../repositories/IContractorRepository'
-import { IContractorSchemaDTO } from '../../../infra/validations/contractor/ContractorSchema'
+import { IRestaurantSchemaDTO } from '../../../infra/validations/restaurant/restaurant-schema'
 import { Injectable } from '@nestjs/common'
 
 @Injectable()
-export class UpdateContractorUseCase {
+export class UpdateRestaurantUseCase {
   constructor(private contractorRepository: IContractorRepository) {}
 
-  async execute(data: IContractorSchemaDTO, id: string) {
+  async execute(data: IRestaurantSchemaDTO, id: string) {
     return await this.contractorRepository.update(data, id)
   }
 }

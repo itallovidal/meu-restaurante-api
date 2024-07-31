@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { IContractorRepository } from '../../repositories/IContractorRepository'
 
 @Injectable()
-export class GetContractorByIDUseCase {
+export class GetRestaurantByIDUseCase {
   constructor(private contractorRepository: IContractorRepository) {}
 
   async execute(id: string) {

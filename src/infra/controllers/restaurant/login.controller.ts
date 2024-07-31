@@ -10,12 +10,12 @@ import { ZodValidationPipe } from '../../validations/zodValidationPipe'
 import {
   loginSchemaDTO,
   loginDTO,
-} from '../../validations/contractor/loginValidation'
-import { LoginContractorUseCase } from '../../../app/useCases/contractor/loginContractorUseCase'
+} from '../../validations/restaurant/login-validation'
+import { LoginRestaurantUseCase } from '../../../app/useCases/restaurant/login-restaurant-use-case'
 
-@Controller('contractor')
+@Controller('restaurant')
 export class LoginController {
-  constructor(private loginContractorUseCase: LoginContractorUseCase) {}
+  constructor(private loginContractorUseCase: LoginRestaurantUseCase) {}
 
   @Post('/login')
   @UsePipes(new ZodValidationPipe(loginSchemaDTO))

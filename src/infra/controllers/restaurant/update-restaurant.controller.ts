@@ -1,4 +1,4 @@
-import { UpdateContractorUseCase } from '../../../app/useCases/contractor/updateContractorUseCase'
+import { UpdateRestaurantUseCase } from '../../../app/useCases/restaurant/update-restaurant-use-case'
 import {
   Body,
   Controller,
@@ -10,20 +10,20 @@ import {
 import { ZodValidationPipe } from '../../validations/zodValidationPipe'
 import {
   contractorSchemaDTO,
-  IContractorSchemaDTO,
-} from '../../validations/contractor/ContractorSchema'
-import { strSchema } from '../../validations/contractor/genericValidator'
+  IRestaurantSchemaDTO,
+} from '../../validations/restaurant/restaurant-schema'
+import { strSchema } from '../../validations/restaurant/generic-validator'
 
-@Controller('contractor')
-export class UpdateContractorController {
-  constructor(private updateContractorUseCase: UpdateContractorUseCase) {}
+@Controller('restaurant')
+export class UpdateRestaurantController {
+  constructor(private updateContractorUseCase: UpdateRestaurantUseCase) {}
 
   @Put('update/:id')
   @HttpCode(200)
   async handle(
     @Param('id', new ZodValidationPipe(strSchema)) id: string,
     @Body(new ZodValidationPipe(contractorSchemaDTO))
-    body: IContractorSchemaDTO,
+    body: IRestaurantSchemaDTO,
   ) {
     try {
       console.log(body)

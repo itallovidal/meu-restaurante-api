@@ -5,7 +5,7 @@ const partidoSchema = z.object({
   partido_sigla: z.string().or(z.null()).optional().default(null),
 })
 
-export const contractorSchemaDTO = z.object({
+export const restaurantSchemaDTO = z.object({
   email: z.string().toLowerCase(),
   id: z.string().uuid().optional(),
   nome: z.string(),
@@ -21,7 +21,7 @@ export const contractorSchemaDTO = z.object({
   whatsappCommunity: z.string().or(z.null()).default(null),
 })
 
-export const createContractorSchemaDTO = contractorSchemaDTO
+export const createContractorSchemaDTO = restaurantSchemaDTO
   .omit({
     partido: true,
   })
@@ -32,8 +32,8 @@ export const createContractorSchemaDTO = contractorSchemaDTO
     }),
   )
 
-export interface ICreateContractorSchemaDTO
+export interface ICreateRestaurantSchemaDTO
   extends z.infer<typeof createContractorSchemaDTO> {}
 
-export interface IContractorSchemaDTO
-  extends z.infer<typeof contractorSchemaDTO> {}
+export interface IRestaurantSchemaDTO
+  extends z.infer<typeof restaurantSchemaDTO> {}

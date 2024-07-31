@@ -5,13 +5,13 @@ import {
   Param,
   UsePipes,
 } from '@nestjs/common'
-import { GetContractorByIDUseCase } from '../../../app/useCases/contractor/getContractorByIDUseCase'
+import { GetRestaurantByIDUseCase } from '../../../app/useCases/restaurant/get-restaurant-by-ID-use-case'
 import { ZodValidationPipe } from '../../validations/zodValidationPipe'
 import { UUIDValidation } from '../../validations/UUIDValidation'
 
-@Controller('contractor')
-export class GetContractorByIDController {
-  constructor(private getContractorByIDUseCase: GetContractorByIDUseCase) {}
+@Controller('restaurant')
+export class GetRestaurantByIDController {
+  constructor(private getContractorByIDUseCase: GetRestaurantByIDUseCase) {}
 
   @Get('/:id')
   @UsePipes(new ZodValidationPipe(UUIDValidation))

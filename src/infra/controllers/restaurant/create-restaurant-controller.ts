@@ -9,16 +9,16 @@ import {
 } from '@nestjs/common'
 import {
   createContractorSchemaDTO,
-  ICreateContractorSchemaDTO,
-} from '../../validations/contractor/ContractorSchema'
+  ICreateRestaurantSchemaDTO,
+} from '../../validations/restaurant/restaurant-schema'
 import { FileInterceptor } from '@nestjs/platform-express'
-import { CreateContractorUseCase } from '../../../app/useCases/contractor/createContractorUseCase'
+import { CreateRestaurantUseCase } from '../../../app/useCases/restaurant/create-restaurant-use-case'
 import multer = require('multer')
 import { ZodValidationPipe } from '../../validations/zodValidationPipe'
 
-@Controller('contractor')
-export class CreateContractorController {
-  constructor(private createContractorUseCase: CreateContractorUseCase) {}
+@Controller('restaurant')
+export class CreateRestaurantController {
+  constructor(private createContractorUseCase: CreateRestaurantUseCase) {}
 
   @HttpCode(201)
   @Post('/create')
@@ -33,7 +33,7 @@ export class CreateContractorController {
   )
   async handle(
     @Body(new ZodValidationPipe(createContractorSchemaDTO))
-    body: ICreateContractorSchemaDTO,
+    body: ICreateRestaurantSchemaDTO,
     @UploadedFile() profile_image: Express.Multer.File,
   ) {
     try {
