@@ -1,5 +1,5 @@
 import { ExportClientsToCsvUseCase } from '../../../app/useCases/client/ExportClientsToCsvUseCase'
-import {Controller, Get, Header, HttpCode, Param} from '@nestjs/common'
+import { Controller, Get, Header, HttpCode, Param } from '@nestjs/common'
 import { ZodValidationPipe } from '../../validations/zodValidationPipe'
 import { firebaseIdCollection } from '../../validations/idCollectionValidation'
 
